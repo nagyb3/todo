@@ -1,0 +1,76 @@
+:root {
+    font-family: 'Roboto', sans-serif;
+    --header-bgc: #594F4F;
+    --sidebar-bgc: #547980;
+    --main-bgc: #9accc9;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-areas:
+            "h h"
+            "s m";
+    grid-template-rows: 100px calc(100vh - 100px);
+    grid-template-columns: 30% 70%;
+}
+
+.header {
+    grid-area: h;
+    display: flex;
+    align-items: center;
+    background-color: var(--header-bgc);
+}
+
+.header > h1 {
+    margin-left: clamp(20px, 7%, 30vw);
+    color: white;
+    letter-spacing: 3px;
+}
+
+.sidebar {
+    grid-area: s;
+    background-color: var(--sidebar-bgc);
+}
+
+.main {
+    grid-area: m;
+    background-color: var(--main-bgc);
+}
+
+button.add {
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+    font-size: 30px;
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+    border: 1px solid black;
+}
+
+.cards-container {
+    display: flex;
+}
+
+.card {
+    background-color: white;
+    width: 300px;
+    /*height: 3rem;*/
+    margin: 30px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.card-title {
+    margin: 0;
+}
+
+.card {
+    display: flex;
+}
+
+.card > p {
+    flex: 1;
+}
