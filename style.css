@@ -24,7 +24,6 @@ body {
 }
 
 .header > h1 {
-    /*margin-left: clamp(20px, 7%, 30vw);*/
     margin-left: 60px;
     color: white;
     letter-spacing: 3px;
@@ -84,22 +83,23 @@ button.add {
 }
 
 .newtodo {
-    /*border: 2px solid red;*/
     padding: 10px;
     position: fixed;
     bottom: 10px;
     width: 600px;
-    height: 100px;
+    height: 150px;
     margin-left: 10px;
-    background-color: white;
+    background-color: var(--header-bgc);
     border-radius: 5px;
+    color: white;
+    font-size: 1.2rem;
 }
 
 form.myform {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 10px;
+    gap: 15px;
     height: 100%;
 }
 
@@ -115,7 +115,6 @@ form.myform {
 }
 
 .newcategory {
-
     align-self: center;
     margin-bottom: 10px;
     height: 40px;
@@ -126,6 +125,8 @@ form.myform {
     color: white;
     letter-spacing: 1px;
     font-size: 0.9rem;
+    position: fixed;
+    bottom: 10px;
 }
 
 .new-category-form {
@@ -137,6 +138,8 @@ form.myform {
     border-radius: 5px;
     background-color: #594F4F;
     color: white;
+    position: relative;
+    bottom: 70px;
 }
 
 .new-category-form > form {
@@ -168,3 +171,12 @@ form.myform {
     font-size: 1.2rem;
 }
 
+.close-new-category {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+
+.close-new-todo {
+    float: right;
+}

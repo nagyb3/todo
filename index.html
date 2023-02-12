@@ -17,13 +17,11 @@
 	<div class="sidebar">
 		<div class="container">
 			<h2>All</h2>
-			<h2>Today</h2>
-			<h2>Tomorrow</h2>
 		</div>
 
 		<div hidden class="new-category-form">
+			<button class="close-new-category">X</button>
 			<form class="new-category">
-<!--				<p>Add new category</p>-->
 				<div>
 					<label for="new-category">New category name:</label>
 					<input type="text" name="new-category" id="new-category">
@@ -46,14 +44,22 @@
 		</div>
 
 		<div hidden class="newtodo">
+
 			<form action="" class="myform">
 				<div class="title">
 					<label for="newtodo">Title for todo:</label>
 					<input type="text" name="newtodo" id="newtodo">
+					<button class="close-new-todo">x</button>
 				</div>
 				<div class="priority">
 					<label for="priority">priority</label>
 					<input type="range" min="1" max="3" name="priority" id="priority">
+				</div>
+				<div class="category">
+					<label for="select-category">Select the category:</label>
+					<select name="select-category" id="select-category">
+
+					</select>
 				</div>
 				<button type="submit">submit</button>
 			</form>

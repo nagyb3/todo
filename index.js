@@ -12,7 +12,7 @@ const cardsContainer = document.querySelector('.cards-container');
 
 myForm.addEventListener('submit', function(e) {
     e.preventDefault();
-    todoArray.push(new Todo(e.target[0].value, e.target[1].value));
+    todoArray.push(new Todo(e.target[0].value, e.target[2].value));
     myFormDiv.setAttribute('hidden', '');
     cardsContainer.appendChild(cardDOMStuff(todoArray.length - 1));
     myForm.reset();
@@ -21,6 +21,7 @@ myForm.addEventListener('submit', function(e) {
 const addButton = document.querySelector('button.add');
 
 addButton.addEventListener('click', () => {
+    updateSelectCategory();
     myFormDiv.removeAttribute('hidden');
 });
 
@@ -32,7 +33,6 @@ function refreshCards() {
         let priorityCircle = document.createElement('span');
         priorityCircle.classList.add('priority-circle');
         //priority: 1: highest, 3: lowest
-        console.log(todoArray[i].priority)
         if (todoArray[i].priority === 1) {
             priorityCircle.style.backgroundColor = 'red';
         } else if (todoArray[i].priority === 2) {
@@ -54,8 +54,11 @@ function refreshCards() {
         let deleteButton = document.createElement('button');
         deleteButton.textContent = 'X';
         deleteButton.classList.add('delete-button');
+        deleteButton.addEventListener('click', () => {
+            todoArray.splice(i, 1);
+            refreshCards()
+        })
         card.appendChild(deleteButton);
-        //TODO: deletebutton functionality
 
         cardsContainer.appendChild(card);
 
@@ -68,7 +71,6 @@ function cardDOMStuff(i) {
     let priorityCircle = document.createElement('span');
     priorityCircle.classList.add('priority-circle');
     //priority: 1: highest, 3: lowest
-    console.log(todoArray[i].priority)
     if (todoArray[i].priority === 1) {
         priorityCircle.style.backgroundColor = 'red';
     } else if (todoArray[i].priority === 2) {
@@ -90,8 +92,11 @@ function cardDOMStuff(i) {
     let deleteButton = document.createElement('button');
     deleteButton.textContent = 'X';
     deleteButton.classList.add('delete-button');
+    deleteButton.addEventListener('click', () => {
+        todoArray.splice(i, 1);
+        refreshCards()
+    })
     card.appendChild(deleteButton);
-    //TODO: deletebutton functionality
 
     return card
 }
@@ -101,7 +106,7 @@ const newCategoryDiv = document.querySelector('div.new-category-form');
 const allCategoryDiv = document.querySelector('.sidebar > .container');
 const addNewCategoryButton = document.querySelector('button.newcategory');
 
-let categoryArray = ['All', 'Today', 'Tomorrow'];
+let categoryArray = ['All', 'Default'];
 
 newCategoryForm.addEventListener('submit', function(e) {
     e.preventDefault();
@@ -123,4 +128,29 @@ function refreshCategories() {
 
 addNewCategoryButton.addEventListener('click', () => {
     newCategoryDiv.removeAttribute('hidden');
+})
+
+const selectCategory = document.querySelector('#select-category');
+
+function updateSelectCategory() {
+    selectCategory.textContent = '';
+    for (let i = 1; i < categoryArray.length; i++) {
+        let nextCategory = document.createElement('option');
+        nextCategory.setAttribute('value', categoryArray[i]);
+        nextCategory.textContent = categoryArray[i];
+        selectCategory.appendChild(nextCategory);
+    }
+}
+
+const closeNewTodoButton = document.querySelector('.close-new-todo');
+
+closeNewTodoButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    myFormDiv.setAttribute('hidden', '');
+})
+
+const closeNewCategory = document.querySelector('.close-new-category');
+
+closeNewCategory.addEventListener('click', () => {
+    newCategoryDiv.setAttribute('hidden', '');
 })
