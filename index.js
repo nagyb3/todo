@@ -1,6 +1,14 @@
 function Todo(title, priority) {
     this.title = title;
     this.priority = Number(priority);
+    this.completed = false;
+    this.changeCompletedStatus = function() {
+        if (this.completed === false) {
+            this.completed = true;
+        } else if (this.completed === true) {
+            this.completed = false;
+        }
+    }
 }
 
 let todoArray = [];
@@ -32,7 +40,6 @@ function refreshCards() {
         card.classList.add('card');
         let priorityCircle = document.createElement('span');
         priorityCircle.classList.add('priority-circle');
-        //priority: 1: highest, 3: lowest
         if (todoArray[i].priority === 1) {
             priorityCircle.style.backgroundColor = 'red';
         } else if (todoArray[i].priority === 2) {
@@ -46,7 +53,13 @@ function refreshCards() {
         cardTitle.classList.add('card-title');
         cardTitle.textContent = todoArray[i].title;
         cardTitle.addEventListener('click', () => {
-            // TODO: task completed functionality
+            if (todoArray[i].completed === false) {
+                cardTitle.style.textDecoration = 'line-through';
+                todoArray[i].changeCompletedStatus();
+            } else {
+                cardTitle.style.textDecoration = 'none';
+                todoArray[i].changeCompletedStatus();
+            }
         })
         card.appendChild(cardTitle);
 
@@ -70,7 +83,6 @@ function cardDOMStuff(i) {
     card.classList.add('card');
     let priorityCircle = document.createElement('span');
     priorityCircle.classList.add('priority-circle');
-    //priority: 1: highest, 3: lowest
     if (todoArray[i].priority === 1) {
         priorityCircle.style.backgroundColor = 'red';
     } else if (todoArray[i].priority === 2) {
@@ -84,7 +96,14 @@ function cardDOMStuff(i) {
     cardTitle.classList.add('card-title');
     cardTitle.textContent = todoArray[i].title;
     cardTitle.addEventListener('click', () => {
-        // TODO: task completed functionality
+        if (todoArray[i].completed === false) {
+            cardTitle.style.textDecoration = 'line-through';
+            todoArray[i].changeCompletedStatus();
+        } else {
+            cardTitle.style.textDecoration = 'none';
+            todoArray[i].changeCompletedStatus();
+        }
+
     })
     card.appendChild(cardTitle);
 
