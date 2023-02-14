@@ -24,6 +24,7 @@ class Todo {
 
 newTodoButton.addEventListener('click', () => {
     formTodoDiv.removeAttribute('hidden');
+    refreshCategoriesinTodoForm();
 });
 
 newCategoryButton.addEventListener('click', () => {
@@ -38,7 +39,8 @@ closeNewCategory.addEventListener('click', () => {
 
 const closeNewTodo = document.querySelector('button.close-new-todo');
 
-closeNewTodo.addEventListener('click', () => {
+closeNewTodo.addEventListener('click', (e) => {
+    e.preventDefault();
     formTodoDiv.setAttribute('hidden', '');
 });
 
@@ -98,6 +100,9 @@ function drawAllCategories() {
         let p = document.createElement('p');
         p.textContent = allCategory[i];
         nextCategory.appendChild(p);
+        nextCategory.addEventListener('click', () => {
+            showByOneCategory(allCategory[i]);
+        });
         categoryList.appendChild(nextCategory);
     }
 }
@@ -108,4 +113,38 @@ formCategory.addEventListener('submit', (e) => {
     drawAllCategories();
     formCategoryDiv.setAttribute('hidden', '');
     formCategory.reset();
+    refreshCategoriesinTodoForm();
 });
+
+//TODO: show todos by only one category after clicking that categories button
+
+const selectCategory = document.querySelector('#select-category');
+
+function refreshCategoriesinTodoForm() {
+    selectCategory.textContent = '';
+    for (let i = 0; i < allCategory.length; i++) {
+        let nextCategory = document.createElement('option');
+        nextCategory.setAttribute('value', allCategory[i]);
+        nextCategory.textContent = allCategory[i];
+        selectCategory.appendChild(nextCategory);
+    }
+}
+
+const allCategoryMenu = document.querySelector('h2.all');
+
+//show card by 'ALL' category
+allCategoryMenu.addEventListener('click', () => {
+    cardsContainer.textContent = '';
+    for (let i = 0; i < allTodo.length; i++) {
+        cardsContainer.appendChild(drawCardDom(allTodo[i]));
+    }
+})
+
+function showByOneCategory(category) {
+    cardsContainer.textContent = '';
+    for (let i = 0; i < allTodo.length; i++) {
+        if (allTodo[i].category === category) {
+            cardsContainer.appendChild(drawCardDom(allTodo[i]));
+        }
+    }
+}
