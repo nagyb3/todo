@@ -103,10 +103,14 @@ form.myform {
     height: 100%;
 }
 
-.sidebar > .container > h2 {
+.sidebar > .container h2 {
     margin: 20px;
     color: white;
     letter-spacing: 2px;
+}
+
+.sidebar > .container h2:hover {
+    cursor: pointer;
 }
 
 .sidebar {
@@ -179,4 +183,16 @@ form.myform {
 
 .close-new-todo {
     float: right;
+}
+
+.container li {
+    color: white;
+    list-style-type: "\27A1";
+    font-size: 1.4rem;
+}
+
+.container li p {
+    position: relative;
+    right: -10px;
+    cursor: pointer;
 }

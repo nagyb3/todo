@@ -88,3 +88,24 @@ function drawCardDom(object) {
 
     return card
 }
+
+const categoryList = document.querySelector('.category-list');
+
+function drawAllCategories() {
+    categoryList.textContent = '';
+    for (let i = 0; i < allCategory.length; i++) {
+        let nextCategory = document.createElement('li');
+        let p = document.createElement('p');
+        p.textContent = allCategory[i];
+        nextCategory.appendChild(p);
+        categoryList.appendChild(nextCategory);
+    }
+}
+
+formCategory.addEventListener('submit', (e) => {
+    e.preventDefault();
+    allCategory.push(e.target[0].value);
+    drawAllCategories();
+    formCategoryDiv.setAttribute('hidden', '');
+    formCategory.reset();
+});
